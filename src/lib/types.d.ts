@@ -1,15 +1,13 @@
-// On etant les info recu de la connection pour y rajouter le role sur le token
-import NextAuth, { DefaultSession } from "next-auth";
-import { User } from "@prisma/client";
-import { JWT } from "next-auth/jwt";
+import NextAuth, { DefaultSession, DefaultUser } from "next-auth";
 
 declare module "next-auth" {
- 
-  interface Session extends DefaultSession {
-    user: User;
+  interface Session {
+    user?: {
+      role?: string | null;
+    } & DefaultSession["user"];
   }
-}
 
-declare module "next-auth/jwt" {
-  type JWT = User;
+  interface User extends DefaultUser {
+    role?: string | null;
+  }
 }

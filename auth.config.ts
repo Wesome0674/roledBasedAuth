@@ -8,12 +8,11 @@ export default {
     GitHub({
       profile(profile) {
         return {
-          /*information passe lors de la connection */
-          id: profile.id.toString(),
-          name: profile.name,
+          id: profile.id.toString(), // Convertir l'ID en chaîne de caractères
+          name: profile.name || profile.login,
           email: profile.email,
           image: profile.avatar_url,
-          role: profile.role ?? "user",
+          role: "user", // Définir le rôle par défaut
         };
       },
     }),
