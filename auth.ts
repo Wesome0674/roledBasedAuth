@@ -14,16 +14,9 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
   adapter: PrismaAdapter(prisma), // adaptateur prisma 
   ...authConfig, // config creer dans auth.config.ts 
   callbacks: {
-     jwt({ token, user }) {
-      return { ...token, ...user }; 
+    session({ session, user }) {
+      session.user.id = user.id
+      return session
     },
-    session({ session, token }) {
-      session.user.role = token.role as string; // on passe le role au token
-      return session;
-    },
-    /* authorized: async ({ auth }) => {
-      // Les utilisateurs connectés sont authentifiés, sinon redirigés vers la page de connexion
-      return !!auth
-    }, */
-  },
+  }
 });
