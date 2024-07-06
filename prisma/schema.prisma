@@ -17,7 +17,7 @@ model User {
   email         String?         @unique
   emailVerified DateTime?
   image         String?
-  role          String?   @default("user") // Nouveau champ avec valeur par défaut
+  role          String?   // Nouveau champ avec valeur par défaut
   accounts      Account[]
   sessions      Session[]
   // Optional for WebAuthn support
