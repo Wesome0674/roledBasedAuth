@@ -8,6 +8,9 @@ import authConfig from "./auth.config";
 const prisma = new PrismaClient(); // generation du client prisma
 
 export const { auth, handlers, signIn, signOut } = NextAuth({
+  session: {
+    strategy: "database", // strategie json web token pour pouvoir passer un role
+  },
   adapter: PrismaAdapter(prisma), // adaptateur prisma 
   ...authConfig, // config creer dans auth.config.ts 
   callbacks: {
