@@ -6,7 +6,7 @@ export async function middleware(request: NextRequest) { // a chaque request emi
   const session = await auth(); // on recupere la session
   if (
     request.nextUrl.pathname.startsWith("/Admin-Dashboard") && // si l'utilisateur essaie d'acceder a la route admin
-    session?.user.role !== "admin" // mais qu'il n'est pas un admin
+    session?.user?.role !== "admin" // mais qu'il n'est pas un admin
   ) {
     return NextResponse.redirect(new URL("/access-denied", request.url)); // alors on le redirige vers la page access denied
   }
