@@ -8,12 +8,13 @@ const prisma = new PrismaClient(); // generation du client prisma
 
 export const { auth, handlers, signIn, signOut } = NextAuth({
   session: {
-    strategy: "jwt", // strategie json web token pour pouvoir passer un role
+    strategy: "jwt", 
   },
-  adapter: PrismaAdapter(prisma), // adaptateur prisma
-  ...authConfig, // config creer dans auth.config.ts
+  adapter: PrismaAdapter(prisma), 
+  ...authConfig, 
   callbacks: {
     jwt({ token, user}) {
+      console.log(token)
       if (user) {
         token.role = user.role;
       }
