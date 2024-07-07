@@ -12,7 +12,7 @@ export default {
           name: profile.name || profile.login,
           email: profile.email,
           image: profile.avatar_url,
-          role: "user", // Définir le rôle par défaut
+          role: profile.role ?? "user",
         };
       },
     }),
