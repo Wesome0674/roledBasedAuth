@@ -8,7 +8,7 @@ const prisma = new PrismaClient(); // generation du client prisma
 
 export const { auth, handlers, signIn, signOut } = NextAuth({
   session: {
-    strategy: "jwt", 
+    strategy: "database", 
   },
   adapter: PrismaAdapter(prisma), 
   ...authConfig, 
